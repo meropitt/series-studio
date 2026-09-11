@@ -79,7 +79,10 @@ document.getElementById("auth-send").addEventListener("click", async () => {
   const email = document.getElementById("auth-email").value.trim();
   const msg = document.getElementById("auth-msg");
   if (!email) return;
-  const { error } = await sb.auth.signInWithOtp({ email });
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.href },
+  });
   msg.style.color = error ? "#d98686" : "";
   msg.textContent = error ? error.message : "تم الإرسال! افتح بريدك واضغط على الرابط.";
 });
