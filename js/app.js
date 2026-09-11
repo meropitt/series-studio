@@ -44,7 +44,9 @@ async function callFunction(name, body) {
 }
 
 async function uploadToMedia(file, subfolder) {
-  const path = `${currentUser.id}/${subfolder}/${Date.now()}-${file.name}`;
+  const ext = (file.name.split(".").pop() || "bin").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const safeName = `${Date.now()}.${ext || "bin"}`;
+  const path = `${currentUser.id}/${subfolder}/${safeName}`;
   const { error } = await sb.storage.from("media").upload(path, file, { upsert: true });
   if (error) throw error;
   const { data } = sb.storage.from("media").getPublicUrl(path);
