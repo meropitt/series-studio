@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>استوديو مسلسلك</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- شاشة الدخول -->
+  <div id="auth-screen" class="auth-screen" style="display:none">
+    <h1 class="display">استوديو مسلسلك</h1>
+    <p>سجّل دخولك برابط سحري يُرسل إلى بريدك — بدون كلمة مرور</p>
+    <input id="auth-email" type="email" placeholder="بريدك الإلكتروني" />
+    <button id="auth-send" class="btn primary" style="width:100%">إرسال رابط الدخول</button>
+    <div id="auth-msg" class="msg"></div>
+  </div>
+
+  <!-- التطبيق الرئيسي -->
+  <div id="main-app" style="display:none">
+    <header class="topbar">
+      <div class="brand"><span class="reel"></span><span class="display">استوديو مسلسلك</span></div>
+      <div class="user-chip">
+        <span id="user-email"></span>
+        <button id="logout-btn">خروج</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="characters">الشخصيات</button>
+      <button class="tab-btn" data-tab="script">السكربت</button>
+      <button class="tab-btn" data-tab="generate">التوليد</button>
+      <button class="tab-btn" data-tab="library">المكتبة</button>
+    </nav>
+
+    <!-- الشخصيات -->
+    <section id="view-characters" class="view active">
+      <div class="view-head">
+        <div>
+          <h2>الشخصيات</h2>
+          <p>ارفع صورة وعينة صوت (٣٠ ثانية على الأقل) لكل شخص — لك ولأصحابك</p>
+        </div>
+      </div>
+      <div id="characters-grid" class="grid"></div>
+    </section>
+
+    <!-- السكربت -->
+    <section id="view-script" class="view">
+      <div class="view-head">
+        <div>
+          <h2>السكربت</h2>
+          <p>قسّم قصتك إلى مشاهد، وكل مشهد إلى أسطر حوار لكل شخصية</p>
+        </div>
+        <button id="add-scene-btn" class="btn primary">+ مشهد جديد</button>
+      </div>
+      <div id="scenes-list"></div>
+    </section>
+
+    <!-- التوليد -->
+    <section id="view-generate" class="view">
+      <div class="view-head">
+        <div>
+          <h2>التوليد</h2>
+          <p>ولّد الصوت أولًا لكل سطر، ثم الفيديو الناطق</p>
+        </div>
+      </div>
+      <div id="generate-list"></div>
+    </section>
+
+    <!-- المكتبة -->
+    <section id="view-library" class="view">
+      <div class="view-head">
+        <div>
+          <h2>المكتبة</h2>
+          <p>كل المقاطع الجاهزة من مسلسلك</p>
+        </div>
+      </div>
+      <div id="library-grid" class="library-grid"></div>
+    </section>
+  </div>
+</div>
+
+<!-- Supabase JS client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
