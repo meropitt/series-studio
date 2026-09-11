@@ -238,6 +238,7 @@ function openAddCharacterModal() {
       renderCharacters();
       toast("تمت إضافة الشخصية");
     } catch (err) {
+      alert("خطأ: " + err.message);
       toast(err.message, true);
       e.target.disabled = false;
       e.target.textContent = "حفظ";
